@@ -18,4 +18,11 @@ export default class BookResolver {
     const newBook = await new BookService().createBook(infos);
     return newBook;
   }
+
+  @Authorized(["ADMIN"])
+  @Mutation(() => Book)
+  async deleteBook(@Arg("id") id: string) {
+    const bookDeleted = await new BookService().deleteBook(id);
+    return bookDeleted;
+  }
 }

@@ -25,6 +25,15 @@ export default class User {
   @Field({ nullable: true })
   @Column({ nullable: true, default: 'USER' }) // Ajout de l'option default
   role: string;
+
+  // @Field()
+  // @Column({
+  //   type: "text",
+  //   enum: ["ADMIN", "USER"],
+  //   nullable: true, 
+  //   default: "USER"
+  // })
+  // role: ROLE
 }
 
 @ObjectType()

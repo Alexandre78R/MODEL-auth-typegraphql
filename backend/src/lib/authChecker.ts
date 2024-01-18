@@ -1,17 +1,21 @@
-//backend/src/lib/authChecker.ts
 import { AuthChecker } from "type-graphql";
 import { MyContext } from "..";
 
 export const customAuthChecker: AuthChecker<MyContext> = (
-    { context },
-    roles
-  ) => {
-    // console.log(roles)
-    if (context.user && roles.includes(context.user.role) || context.user &&  roles.length === 0) { // on peut imaginer que si le user n'est pas null et qu'il a le rôle faisant partie du tableau de rôle indiqué dans le décorateur Authorized(["MANAGER"]) on le laisse passer 
-      return true;
+  { context },
+  roles
+) => {
+  if (context.user) {
+    //si l 'utilisateur est connecté
+    //vérifier que le user à le role demandé si le tableau de roles à une longueur > 1
+    if (roles.length > 0) { // si un role est indiqué au décorateur
+      if (roles.includes(context.user.role)) { //et que le user a le role parmi ce tableau
+        return true; //on laisse passer
+      } else { //sinon
+        return false; //on bloque
+      }
     }
-
-    throw new Error(
-        "Vous devez être authentifié pour avoir accès a cette fonctionnalité !"
-      );
-  };
+    return true; //si le user est connecté et qu'on a pas spécifié de rôle, on laisse passer
+  }
+  return false; //si le user n'est pas connecté quand on utilise le décorateur, on bloque
+};

@@ -9,8 +9,8 @@ export const LOGIN = gql`
   }
 `;
 
-export const LOGOUT  = gql`
-  query Logout() {
+export const LOGOUT = gql`
+  query Logout {
     logout {
       success
       message

@@ -10,6 +10,8 @@ export default function App({ Component, pageProps }: AppProps) {
     credentials: "include"
   });
 
+  // console.log("client", client )
+
   return (
     <ApolloProvider client={client}>
       <Layout>
