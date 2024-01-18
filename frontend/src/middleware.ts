@@ -37,7 +37,7 @@ async function checkToken(token: string | undefined, request: NextRequest) {
   if (!token) {
     console.log("toto")
     if (
-      // request.nextUrl.pathname.startsWith("/books/list") ||
+      request.nextUrl.pathname.startsWith("/books/list") ||
       request.nextUrl.pathname.startsWith("/admin/books")
     ) {
       console.log("admin book c sxs")

@@ -6,6 +6,8 @@ function ListBooks() {
   const { data } = useQuery<BooksQuery, BooksQueryVariables>(LIST_BOOKS, {
     fetchPolicy: "no-cache",
   });
+
+  console.log(data)
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24`}
