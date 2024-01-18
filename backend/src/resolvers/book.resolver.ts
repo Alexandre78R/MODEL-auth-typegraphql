@@ -7,7 +7,7 @@ import { MyContext } from "..";
 
 @Resolver()
 export default class BookResolver {
-  @Authorized(["MANAGER"])
+  @Authorized()
   @Query(() => [Book])
   async books(@Ctx() ctx: MyContext) {
     return await new BookService().listBooks();

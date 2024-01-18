@@ -55,6 +55,7 @@ function Topbar() {
           >
             S'inscrire
           </Link>
+          {state.email !== "" && (
           <Link
             href="/auth/logout"
             replace={true}
@@ -62,6 +63,7 @@ function Topbar() {
           >
             Se déconnecter
           </Link>
+          )}
         </div>
       </div>
     </nav>
