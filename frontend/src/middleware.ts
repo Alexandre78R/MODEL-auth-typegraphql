@@ -53,9 +53,16 @@ async function checkToken(token: string | undefined, request: NextRequest) {
   
   try {
     const payload = await verify(token);
-    console.log(payload)
+    console.log("playload", payload)
     if (payload.email && payload.role) {
-      response = NextResponse.next();
+      if (
+        request.nextUrl.pathname.startsWith("/auth/login") ||
+        request.nextUrl.pathname.startsWith("/auth/register") 
+      ) {
+        response = NextResponse.redirect(new URL("/", request.url));
+      } else {
+        response = NextResponse.next();
+      }
       //vérifier si la route commence par admin, et que le payload.role n'est pas admin, je redirige
       if (
         request.nextUrl.pathname.startsWith("/admin/books") &&

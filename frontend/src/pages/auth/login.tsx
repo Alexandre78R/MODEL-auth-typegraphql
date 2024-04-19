@@ -18,9 +18,11 @@ function Login() {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData) as InputLogin;
     if (data.email && data.password) {
+      console.log(data)
       login({
         variables: { infos: { email: data.email, password: data.password } },
         onCompleted(data) {
+          console.log(data)
           if (data.login.success) {
             router.push("/");
           }
