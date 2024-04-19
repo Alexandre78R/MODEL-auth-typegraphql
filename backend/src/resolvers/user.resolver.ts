@@ -62,6 +62,7 @@ export default class UserResolver {
   async register(@Arg("infos") infos: InputRegister){
     console.log("Mes infos => ", infos);
     const user = await new UserService().findUserByEmail(infos.email);
+    console.log(user)
     if (user) throw new Error("Cet email est déjà pris!");
     const newUser = await new UserService().createUser(infos);
     return newUser;
